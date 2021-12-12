@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discrete Probability Distribution</title>
+    <link rel="stylesheet" href="{% static 'Discrete_Probability_Distribution/css/home.css' %}">
+</head>
+<body>
+  <div class="circle-b">
+
+  </div>
+    <div class="landing-page">
+
+      <div class="circle-a">
+
+      </div>
+      
+      
+
+      <div class="icon-a">
+
+      </div>
+
+      <div class="nav">
+        <a href="">Home</a>
+        <div class="space-a">
+
+        </div>
+        <a href="">About Us</a>
+        <div class="space-b">
+
+        </div>
+        <a href="">Contact</a>
+      </div>
+
+      <div class="landing-title">
+        <h1>Mean, Variance and <br>Standard Deviation
+          of a <br>Discrete Probability Distribution </h1>
+          <p class="sub-text">In Partial Fulfillment of the Requirements <br>for the course  CSDS102 (M010) </p>
+      </div>
+
+      <div class="landing-form">
+        <form action="" method="POST">
+          {% csrf_token %}
+          <p class="landing-form-label">X =</p> 
+          <input class="landing-form-input" type="text" name="xValue"><br>
+          <input class="landing-form-submit" type="submit" value="GO">
+        </form >
+      </div>
+
+      
+    </div>
+
+    <div class="output-page">
+
+      <table>
+        <tr>
+          <th>x</th>
+          <th>P(x)</th>
+          <th>xP(x)</th>
+          <th>x^2</th>
+          <th>x^2P(x)</th>
+        </tr>
+        <tr>
+          <td>{{ x }}</td>
+          <td>{{ px }}</td>
+          <td>{{ xpx }}</td>
+          <td>{{ x2 }}</td>
+          <td>{{ x2px }}</td>
+ 
+        </tr>
+    </table>
+
+    </div>
+    
+    
+    
+      
+    <h2>{{ tableValues.0.title }}</h2>
+    
+    
+</body>
+</html>
