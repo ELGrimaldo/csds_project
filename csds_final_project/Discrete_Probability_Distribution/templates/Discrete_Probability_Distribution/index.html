@@ -10,27 +10,64 @@
     <link rel="stylesheet" href="{% static 'Discrete_Probability_Distribution/css/home.css' %}">
 </head>
 <body>
-  <div class="circle-b">
-
-  </div>
+  
     <div class="landing-page">
 
       <div class="circle-a">
 
       </div>
-      
-      
-
-      <div class="icon-a">
+      <div class="circle-b">
 
       </div>
 
+      
+  <div class="triangle-up">
+    
+  </div>
+  <div class="triangle-in" >
+
+  </div>
+
+  <div class="box-out">
+    <div class="box-in">
+
+    </div>
+
+  </div>
+
+  <div class="box-out-a">
+    <div class="box-in-a">
+
+    </div>
+
+  </div>
+
+  <div class="box-out-b">
+    <div class="box-in">
+
+    </div>
+
+  </div>
+      
+  <div class="box-out-c">
+    <div class="box-in-c">
+
+    </div>
+
+  </div>
+
+      <div class="icon-b" >
+        <img class="image-b" src="{% static 'Discrete_Probability_Distribution/images/dices.png' %}">
+      </div>
+
       <div class="nav">
-        <a href="">Home</a>
+        <img class="image-home" src="{% static 'Discrete_Probability_Distribution/images/home.png' %}">
+        
+        <a href="" class="home-text" >Home</a>
         <div class="space-a">
 
         </div>
-        <a href="">About Us</a>
+        <a href="#about">About</a>
         <div class="space-b">
 
         </div>
@@ -39,49 +76,185 @@
 
       <div class="landing-title">
         <h1>Mean, Variance and <br>Standard Deviation
-          of a <br>Discrete Probability Distribution </h1>
-          <p class="sub-text">In Partial Fulfillment of the Requirements <br>for the course  CSDS102 (M010) </p>
+          of a <br>Discrete Probability <br>Distribution </h1>
+          <p class="sub-text">In Partial Fulfillment of the Requirements <br>for the course  CSDS102 (M010) </p><br>
       </div>
 
-      <div class="landing-form">
-        <form action="" method="POST">
+      
+        
+      
+
+      
+    </div>
+
+    <div class="calculator-page" id="cal">
+      <div class="calc-card">
+        <form class="landing-form-form" action="" method="POST" id="form">
           {% csrf_token %}
-          <p class="landing-form-label">X =</p> 
-          <input class="landing-form-input" type="text" name="xValue"><br>
-          <input class="landing-form-submit" type="submit" value="GO">
+          <br>
+          <p class="warn-b">{{ warnTwo }}</p>
+          <p class="warn">{{ warn }}</p>
+          <br>
+          <p class="ins">Enter x and P(x) values seperated by comma and space.</p>
+          
+          <div class="landing-form-a">
+            <p class="landing-form-label-a">X = </p> 
+            <input class="landing-form-input-a" type="text" name="xValue" placeholder="0, 1, 2, 3, 4, ..."><br>
+          </div>
+  
+          <div class="landing-form-b">
+            <p class="landing-form-label-b">P(x) =</p> 
+            <input class="landing-form-input-b" type="text" name="pXValue" placeholder="0.95, 0.1, 0.1, 0.1, 0.1, ..."><br>  
+          </div>
+          <br>
+          <input class="landing-form-submit" type="submit" value="Calculate" onclick="myFunction()">
         </form >
       </div>
-
+      <div class="results-card">
+        <div class="info-mean">
+          <div class="info-left">
+            <p class="info-ttl">Mean</p>
+            <p class="info-dscr">μ = &sum;[xP(x)]</p>
+            <p class="ans">μ = {{ mean }}</p>
+          </div>
+          
+        </div>
+        <div class="info-variance">
+          <div class="info-left">
+            <p class="info-ttl">Variance</p>
+            <p class="info-dscr">σ<sup>2</sup> = &sum;[x<sup>2</sup>P(x)] - {&sum;[(xP(x)]}<sup>2</sup></p>
+            <p class="ans">σ<sup>2</sup> = {{ variance }}</p> 
+          </div>
+          
+        </div>
+        <div class="info-sd">
+          <div class="info-left">
+            <p class="info-ttl">Standard Deviation</p>
+            <p class="info-dscr">σ = &radic;σ<sup>2</sup></p>
+            <p class="ans"> σ = {{ standardDeviation }}</p>
+          </div>
+          
+        </div>
+      </div>
+      <div class="table-card">
+        <table class="table-dist">
+          <tr class="first-c">
+            <th>x</th>
+            <th>P(x)</th>
+            <th>xP(x)</th>
+            <th>x<sup>2</sup></th>
+            <th>x<sup>2</sup>P(x)</th>
+          </tr>
+          {% for row in tableRow %}
+          <tr>
+            
+              <td>{{ row.0 }}</td>
+              <td>{{ row.1 }}</td>
+              <td>{{ row.2 }}</td>
+              <td>{{ row.3 }}</td>
+              <td>{{ row.4 }}</td>
+            
+          </tr>
+          {% endfor %}
+          <tr class="yo">
+            
+            <td class="th-bottom-left"></td>
+            <td>{{ tableSums.0 }}</td>
+            <td>&sum;[xP(x)] = {{ tableSums.1 }}</td>
+            <td></td>
+            <td class="td-bottom-right">&sum;[x<sup>2</sup>P(x)] = {{ tableSums.2 }}</td>
+          
+          </tr>
+          
+        </table>
+      </div>
       
+      <div class="graph-card">
+        <div class="axis">
+          <table class="plottb">
+            <tr class="rowplot">
+              {% for a in plotval %}
+                <td class="plottertb">
+                  <div class="plotter"></div>
+                  <div class="bottom" style="height: {{ a }}%;"></div>
+                </td>
+              {% endfor %}
+            </tr>
+            
+          </table>
+          
+          
+        </div>
+        <div class="xcont">
+          <table class="xvals">
+            <tr>
+              {% for xval in x %}
+              <td class="tdxvals">
+                <p>{{ xval }}</p>
+              </td>
+              {% endfor %}
+            </tr>
+          </table>
+        </div>
+        
+        
+      </div>
     </div>
 
-    <div class="output-page">
+    <div class="output-page" id="result">
 
-      <table>
-        <tr>
-          <th>x</th>
-          <th>P(x)</th>
-          <th>xP(x)</th>
-          <th>x^2</th>
-          <th>x^2P(x)</th>
-        </tr>
-        <tr>
-          <td>{{ x }}</td>
-          <td>{{ px }}</td>
-          <td>{{ xpx }}</td>
-          <td>{{ x2 }}</td>
-          <td>{{ x2px }}</td>
- 
-        </tr>
-    </table>
-
+      
+      <br>
+      <br>
+      <br>
+      <br>
+      
+      <div class="distribution">
+        
+      </div>
+      
+      <br>
+   
+      <br>
+      <br>
     </div>
     
     
+    <div class="about-a" id="about">
+      <div class="contributor">
+        <img class="prof" src="{% static 'Discrete_Probability_Distribution/images/el.jpg' %}" alt="">
+        <p class="prof-name">James Leo C. Grimaldo</p>
+        <img class="icon-aa" src="{% static 'Discrete_Probability_Distribution/images/graduated.png' %}" alt=""><p>BS Computer Science <br>Software Engineering</p>
+        <img class="icon-bb" src="{% static 'Discrete_Probability_Distribution/images/github.png' %}" alt=""><p>github.com/ELGrimaldo</p>
+        <img class="icon-cc" src="{% static 'Discrete_Probability_Distribution/images/instagram.png' %}" alt=""><p>@e___l______</p>
+      </div>
+      <div class="contributor">
+        <img class="prof" src="{% static 'Discrete_Probability_Distribution/images/wakin.jpg' %}" alt="">
+        <p class="prof-name">Joaquin Luis Basbacio</p>
+        <img class="icon-aa" src="{% static 'Discrete_Probability_Distribution/images/graduated.png' %}" alt="">
+        <p>BS Computer Science <br>Software Engineering</p>
+        <img class="icon-bb" src="{% static 'Discrete_Probability_Distribution/images/github.png' %}" alt=""><p>github.com/wakinluis</p>
+        <img class="icon-cc" src="{% static 'Discrete_Probability_Distribution/images/instagram.png' %}" alt=""><p>@joaquinbasbacio</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Copyright © 2010-2021</p>
+    </div>
     
+    <script>
+      function myFunction() {
+        var elmnt = document.getElementById("result");
+        elmnt.scrollIntoView();
+      }
+      $('#form').submit(function(e){
+    $.post('/url/', $(this).serialize(), function(data){ 
+       $('.message').html(data.message);
+       // of course you can do something more fancy with your respone
+    });
+    e.preventDefault();
+      });
+    </script>
       
-    <h2>{{ tableValues.0.title }}</h2>
-    
-    
 </body>
 </html>

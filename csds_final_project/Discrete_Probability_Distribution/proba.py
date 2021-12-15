@@ -1,5 +1,6 @@
 
-from typing import Counter, List
+from typing import List
+import math
 
 
 class DataProbability:
@@ -22,7 +23,7 @@ class DataProbability:
         counter = 0
         while counter != len(valOfX):
             value_xPofX = valOfX[counter] * pOfX[counter]
-            xPofX.append(value_xPofX)
+            xPofX.append(round(value_xPofX,2))
             counter+=1
         
         return xPofX
@@ -46,7 +47,23 @@ class DataProbability:
         counter = 0
         while counter != len(xRaiseTwo):
             value_xRTPX = xRaiseTwo[counter] * pOfX[counter]
-            xRaiseTwoPofX.append(value_xRTPX)
+            xRaiseTwoPofX.append(round(value_xRTPX, 2))
             counter+=1
         
         return xRaiseTwoPofX
+
+
+
+class Probability:
+    def getMean(px: List[int]):
+        result = sum(px)
+        return result
+    
+    def getVariance(xpxTwo: List[int], xpx: List[int]):
+        result = (sum(xpxTwo) - sum(xpx)** 2  ) 
+        return result
+
+    def getStandardDeviation(xpxTwo: List[int], xpx: List[int]):
+        varTwo = (sum(xpxTwo) - sum(xpx)** 2) 
+        result = math.sqrt(varTwo)
+        return result

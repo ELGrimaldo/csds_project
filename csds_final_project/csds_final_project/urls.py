@@ -22,4 +22,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='/Discrete_Probability_Distribution')),
     path('', include('Discrete_Probability_Distribution.urls'))
-]
+] 
